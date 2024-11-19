@@ -1,0 +1,53 @@
+@model IEnumerable<PalletRecords.Models.Pallet>
+
+<h1>Pallets</h1>
+<hr class="custom-hr" />
+<div class="container my-4">
+    <!-- Search Form -->
+    <form asp-controller="Pallets" asp-action="Index" class="d-flex align-items-center justify-content-center mb-4">
+        <div class="input-group" style="width: 50%;">
+            <input type="text" name="SearchString" class="form-control" placeholder="Search by Material..." />
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </form>
+
+    <!-- Pallet Table -->
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>Number</th>
+                        <th>Weight</th>
+                        <th>Material</th>
+                        <th>Number of Items</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pallet in Model)
+                    {
+                        <tr>
+                            <td>@pallet.Number</td>
+                            <td>@pallet.Weight</td>
+                            <td>@pallet.Material</td>
+                            <td>@pallet.NumberOfItems</td>
+                            <td class="d-flex justify-content-center gap-2">
+                                <a asp-action="Details" asp-route-id="@pallet.Id" class="btn btn-info btn-sm">Details</a>
+                                <a asp-action="Edit" asp-route-id="@pallet.Id" class="btn btn-dark btn-sm">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@pallet.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Create New Pallet Button -->
+    <div class="text-center mt-4">
+        <a href="@Url.Action("Create", "Pallets")" class="btn btn-success btn-lg">
+            <i class="fas fa-plus me-2"></i> Create New Pallet
+        </a>
+    </div>
+</div>

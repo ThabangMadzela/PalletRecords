@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README - PalletRecords MVC Web Application</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">PalletRecords MVC Web Application</h1>
+                <p class="text-center">By Thabang Thubane</p>
+                <p class="text-center">Version: v1</p>
+                <p class="lead text-center">A web application to manage pallets and their configurations using .NET 8, Bootstrap 5, and SQLite.</p>
+
+                <hr>
+
+                <h2>Project Overview</h2>
+                <p>This project is an ASP.NET MVC Web Application designed to manage records of pallets and configurations.
+                    It allows users to create, edit, delete, and search for pallets. Pallets can have configurations that
+                    define batch weights and other attributes. The system calculates how many batches a pallet contains based on its weight and the batch weight.</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Create, Edit, and Delete Pallets</li>
+                    <li>Manage Pallet Configurations (Batch Weight)</li>
+                    <li>Batch Calculation based on Pallet Weight and Batch Weight</li>
+                    <li>Search Functionality</li>
+                    <li>Database integration using SQLite</li>
+                </ul>
+
+                <h2>Setup Instructions</h2>
+                <h3>1. Clone the Repository</h3>
+                <pre><code>git clone <your-repository-url></code></pre>
+
+                <h3>2. Install Dependencies</h3>
+                <p>Ensure you have .NET 8 SDK installed. You can download the SDK from 
+                    <a href="https://dotnet.microsoft.com/download/dotnet">here</a>.</p>
+                <p>Run the following commands to set up the necessary tools and packages:</p>
+                <pre><code>dotnet new tool-manifest    # Create the tool manifest (if not already present)
+dotnet tool install dotnet-ef       # Install the Entity Framework Core CLI tool
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite     # SQLite provider for EF Core
+dotnet add package Microsoft.EntityFrameworkCore.Tools       # EF Core tools
+dotnet add package Microsoft.AspNetCore.Mvc                  # MVC support
+dotnet add package Microsoft.EntityFrameworkCore.Design      # Design-time support for EF Core
+dotnet add package Microsoft.AspNetCore.Mvc.ViewFeatures     # View features for MVC</code></pre>
+
+                <h3>3. Configure the SQLite Database</h3>
+                <p>This application uses SQLite for data storage. Ensure that the database is configured in <code>Program.cs</code> and migrations are applied correctly.</p>
+
+                <h3>4. Run the Application</h3>
+                <p>You can run the application using the following command:</p>
+                <pre><code>dotnet run</code></pre>
+
+                <h2>Features & Functionality</h2>
+                <p>The application includes the following key functionalities:</p>
+                <ul>
+                    <li><strong>Create Pallet:</strong> Users can add a new pallet with details like number, weight, material, and description. This view is located in <code>Views/Pallets/Create.cshtml</code>.</li>
+                    <li><strong>Edit Pallet:</strong> Allows users to modify existing pallet details. The form is located in <code>Views/Pallets/Edit.cshtml</code>.</li>
+                    <li><strong>Delete Pallet:</strong> Users can delete a pallet record. This action is handled in <code>Views/Pallets/Delete.cshtml</code>.</li>
+                    <li><strong>View Pallet Details:</strong> Each pallet can be viewed with its full details, including its configuration. This view is located in <code>Views/Pallets/Details.cshtml</code>.</li>
+                    <li><strong>Search for Pallets:</strong> Users can filter pallets by material using the search form located in <code>Views/Pallets/Index.cshtml</code>.</li>
+                </ul>
+
+                <h2>Models</h2>
+                <p>The application uses the following models to represent the pallet and its configurations:</p>
+                <ul>
+                    <li><strong>Pallet.cs</strong>: Represents the pallet entity, including properties like number, weight, material, and description.</li>
+                    <li><strong>PalletConfig.cs</strong>: Represents the pallet configuration entity, including properties like name, description, and batch weight.</li>
+                    <li><strong>ConfiguredPallet.cs</strong>: A view model used for creating or editing a pallet and its configuration together.</li>
+                </ul>
+
+                <h2>Database Context</h2>
+                <p>The database context is located in <code>Data/AppDbContext.cs</code>, which sets up the EF Core context and manages migrations and queries for the database.</p>
+
+                <h2>Controller</h2>
+                <p>The logic for handling pallet-related actions (CRUD operations, batch calculation) is implemented in the <code>PalletsController.cs</code> class. It includes action methods for:</p>
+                <ul>
+                    <li>Displaying a list of pallets (<strong>Index</strong> method)</li>
+                    <li>Displaying a pallet's details (<strong>Details</strong> method)</li>
+                    <li>Creating a new pallet (<strong>Create</strong> method)</li>
+                    <li>Editing a pallet (<strong>Edit</strong> method)</li>
+                    <li>Deleting a pallet (<strong>Delete</strong> method)</li>
+                    <li>Calculating the number of batches for a pallet based on weight and batch weight</li>
+                </ul>
+
+                <h2>Technologies Used</h2>
+                <p>This project is built using the following technologies:</p>
+                <ul>
+                    <li><strong>ASP.NET MVC 8</strong> - The core framework for building the web application</li>
+                    <li><strong>SQLite</strong> - The database for storing pallet and configuration data</li>
+                    <li><strong>Entity Framework Core</strong> - For database interaction and migrations</li>
+                    <li><strong>Bootstrap 5</strong> - For responsive front-end design</li>
+                    <li><strong>JavaScript/jQuery</strong> - For dynamic client-side interactions (e.g., form validation)</li>
+                </ul>
+
+                <h2>How to Use</h2>
+                <p>Once the application is running, navigate to the following pages to interact with the application:</p>
+                <ul>
+                    <li><strong>Home:</strong> The default landing page showing the list of pallets.</li>
+                    <li><strong>Create Pallet:</strong> Navigate to the 'Create' page to add new pallets (located at <code>/Pallets/Create</code>).</li>
+                    <li><strong>Edit Pallet:</strong> Click on any pallet from the list to edit it (located at <code>/Pallets/Edit/{id}</code>).</li>
+                    <li><strong>Delete Pallet:</strong> You can delete a pallet by clicking on the 'Delete' button next to it.</li>
+                    <li><strong>View Pallet Details:</strong> Click on any pallet from the list to view its details (located at <code>/Pallets/Details/{id}</code>).</li>
+                    <li><strong>Search:</strong> Use the search form to filter pallets by material (located at <code>/Pallets/Index</code>).</li>
+                </ul>
+
+                <h2>License</h2>
+                <p>This project is licensed under the MIT License - see the <a href="#">LICENSE</a> file for details.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+@model PalletRecords.Models.ConfiguredPallet
+
+
+<h1 class="mb-4 text-center">Pallet Details</h1>
+<hr class="custom-hr"/>
+
+<div class="row">
+    <!-- Pallet Information -->
+    @if (Model.Pallet != null)
+    {
+        <div class="col-md-6">
+            <div class="card shadow-lg " style="border-radius: 15px; overflow: hidden;">
+                
+                <div class="card-body">
+                    <h3 class="card-title text-primary mb-0">Pallet Information</h3>
+                    <hr class="custom-hr" />
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">Pallet Number</dt>
+                        <dd class="col-sm-8">@Model.Pallet.Number</dd>
+
+                        <dt class="col-sm-4">Input Date</dt>
+                        <dd class="col-sm-8">@Model.Pallet.InputDate.ToString("yyyy-MM-dd")</dd>
+
+                        <dt class="col-sm-4">Weight</dt>
+                        <dd class="col-sm-8">@Model.Pallet.Weight</dd>
+
+                        <dt class="col-sm-4">Material</dt>
+                        <dd class="col-sm-8">@Model.Pallet.Material</dd>
+
+                        <dt class="col-sm-4">Description</dt>
+                        <dd class="col-sm-8">@Model.Pallet.Description</dd>
+
+                        <dt class="col-sm-4">Number of Items</dt>
+                        <dd class="col-sm-8">@Model.Pallet.NumberOfItems</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pallet Configuration -->
+        <div class="col-md-6">
+            @if (Model.PalletConfig != null)
+            {
+                <div class="card shadow-lg " style="border-radius: 15px; overflow: hidden;">
+                    
+                    <div class="card-body">
+                        <h3 class="card-title text-success mb-0">Pallet Configuration</h3>
+                        <hr class="custom-hr" />
+                        <dl class="row mb-0">
+                            <dt class="col-sm-4">Config Name</dt>
+                            <dd class="col-sm-8">@Model.PalletConfig.Name</dd>
+
+                            <dt class="col-sm-4">Config Description</dt>
+                            <dd class="col-sm-8">@Model.PalletConfig.Description</dd>
+
+                            <dt class="col-sm-4">Config Weight</dt>
+                            <dd class="col-sm-8">@Model.PalletConfig.Weight</dd>
+                        </dl>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    <strong>No configuration is associated with this pallet.</strong>
+                </div>
+            }
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="col-12 text-center mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.Pallet.Id" class="btn btn-primary me-2">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    }
+</div>

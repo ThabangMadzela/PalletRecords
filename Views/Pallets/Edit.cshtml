@@ -1,0 +1,53 @@
+@model  PalletRecords.Models.Pallet
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center mb-4">Edit Pallet</h1>
+<hr />
+
+<div class="d-flex justify-content-center">
+    <div class="card shadow-lg p-4" style="width: 50rem;">
+        <div class="card-body">
+            <h4 class="card-title text-warning text-center mb-4">
+                Pallet: @Model.Number
+                <p class="text-secondary fs-6">
+                    <strong>Date Created:</strong> @Model.InputDate.ToString("dddd, MMMM dd yyyy hh:mm tt")
+                </p>
+            </h4>
+            <hr class="custom-hr" />
+
+            <form asp-action="Edit" class="mb-3">
+                <!-- Hidden Fields -->
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Number" />
+                <input type="hidden" asp-for="InputDate" />
+
+                <!-- Weight and Material Side by Side -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Weight" class="form-label">Weight</label>
+                        <input asp-for="Weight" class="form-control" placeholder="Enter Weight" />
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Material" class="form-label">Material</label>
+                        <input asp-for="Material" class="form-control" placeholder="Enter Material" />
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter Description"></textarea>
+                </div>
+
+                <!-- Save Button -->
+                <div class="text-center">
+                    <input type="submit" value="Save" class="btn btn-primary me-2" />
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
